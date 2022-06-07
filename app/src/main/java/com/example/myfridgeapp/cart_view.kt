@@ -16,9 +16,6 @@ import androidx.core.app.NotificationCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myfridgeapp.databinding.CartViewBinding
 import com.example.refrigerator_manage.CartData
-import com.example.refrigerator_manage.MyCartDBHelper
-import com.example.refrigerator_manage.MyCartItemAdapter
-import java.io.FileOutputStream
 import java.util.*
 
 class cart_view : AppCompatActivity() {
@@ -30,10 +27,6 @@ class cart_view : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = CartViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        val actionbar = supportActionBar
-        actionbar!!.title = "Cart View"
-        actionbar.setDisplayHomeAsUpEnabled(true)
         init()
     }
 

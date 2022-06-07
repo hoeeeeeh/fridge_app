@@ -1,9 +1,10 @@
-package com.example.refrigerator_manage
+package com.example.myfridgeapp
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfridgeapp.databinding.RowBinding
+import com.example.refrigerator_manage.CartData
 
 class MyCartItemAdapter(val items: ArrayList<CartData>) : RecyclerView.Adapter<MyCartItemAdapter.ViewHolder>() {
     interface OnItemClickListener {

@@ -22,12 +22,12 @@ class addfoodmenu : AppCompatActivity() {
 
 
         scanbtn.setOnClickListener {
-            val intent = Intent(this,barcode_scan::class.java)
+            val intent = Intent(this,BarcodeScan::class.java)
             startActivity(intent)
 
         }
         savebtn.setOnClickListener {
-            val intent = Intent(this,fridge_display::class.java)
+            //val intent = Intent(this,fridge_display::class.java)
             startActivity(intent)
         }
     }

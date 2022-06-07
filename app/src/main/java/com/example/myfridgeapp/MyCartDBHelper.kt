@@ -1,12 +1,10 @@
-package com.example.refrigerator_manage
+package com.example.myfridgeapp
 
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import com.example.myfridgeapp.R
-import com.example.myfridgeapp.cart_view
-import java.io.FileOutputStream
+import com.example.refrigerator_manage.CartData
 
 class MyCartDBHelper(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_VERSION) {
     companion object {
