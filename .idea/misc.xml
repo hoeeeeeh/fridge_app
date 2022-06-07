@@ -17,6 +17,9 @@
         <entry key="..\:/mobile_programming_silseb_src/myfridgeapp/app/src/main/res/layout/fridge_display.xml" value="0.2264151024877837" />
         <entry key="..\:/mobile_programming_silseb_src/myfridgeapp/app/src/main/res/layout/item_list.xml" value="0.4528302049755674" />
         <entry key="..\:/mobile_programming_silseb_src/myfridgeapp/app/src/main/res/layout/shelf_item_list.xml" value="0.4528302049755674" />
+        <entry key="app/src/main/res/drawable/ic_baseline_access_alarm_24.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/cart_view.xml" value="0.22155710856119792" />
+        <entry key="app/src/main/res/layout/row.xml" value="0.48138122558593754" />
       </map>
     </option>
   </component>
