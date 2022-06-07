@@ -65,7 +65,7 @@ class cart_view : AppCompatActivity() {
 
     private fun init() {
         myCartDBHelper = MyCartDBHelper(this)
-        myCartDBHelper.insertProduct(CartData(0,"당근",2))
+        //myCartDBHelper.insertProduct(CartData(0,"당근",2))
         myCartDBHelper.savetorecycler()
         initRecyclerView()
     }
