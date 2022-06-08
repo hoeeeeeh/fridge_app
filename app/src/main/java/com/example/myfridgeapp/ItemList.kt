@@ -6,14 +6,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfridgeapp.databinding.ActivityItemListBinding
 import com.example.myfridgeapp.databinding.FridgeColumnBinding
 import com.example.myfridgeapp.databinding.ItemRowBinding
+import com.example.refrigerator_manage.CartData
 
 class ItemList : AppCompatActivity() {
     private lateinit var productList : MutableList<Product>
@@ -63,7 +66,7 @@ class ItemList : AppCompatActivity() {
 class SelectedFloorAdapter(val productList: List<Product>) : RecyclerView.Adapter<SelectedFloorAdapter.ViewHolder>(){
 
     interface OnItemClickListener{
-        // fun OnItemClick(data: MyData)
+         fun OnItemClick(data: Product, pos:Int)
     }
 
     var itemClickListener: OnItemClickListener?= null
@@ -73,7 +76,7 @@ class SelectedFloorAdapter(val productList: List<Product>) : RecyclerView.Adapte
         val itemName = itemView.findViewById<TextView>(R.id.itemName)
         val itemAmt = itemView.findViewById<TextView>(R.id.itemamt)
         val itemExpdate = itemView.findViewById<TextView>(R.id.itemexpdate)
-        init{}
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -83,9 +86,9 @@ class SelectedFloorAdapter(val productList: List<Product>) : RecyclerView.Adapte
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.itemName.text = productList[position].pname
-        holder.itemAmt.text = productList[position].pquantity.toString() + "개"
-        holder.itemExpdate.text = "유통기한 : " + productList[position].expdate.toString()
+        holder.itemName.text = "상품명: " + productList[position].pname
+        holder.itemAmt.text = "수량: " + productList[position].pquantity.toString() + "개"
+        holder.itemExpdate.text = "남은 유통기한 : " + productList[position].expdate.toString() +"일"
     }
 
     override fun getItemCount(): Int {

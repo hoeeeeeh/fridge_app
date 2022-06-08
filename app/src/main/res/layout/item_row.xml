@@ -30,6 +30,7 @@
             app:srcCompat="@drawable/milk" />
 
         <LinearLayout
+            android:id="@+id/linearlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
