@@ -88,6 +88,8 @@ class AddFridge : AppCompatActivity() {
                 val intent = Intent(this, FridgeManager::class.java)
                 intent.putExtra("fridgeData", fridge)
                 startActivity(intent)
+                setResult(RESULT_OK, null)
+
                 finish()
             }else{
                 Toast.makeText(this,"가상 냉장고를 만들지 못했습니다. 잠시 후에 다시 시도해 주세요.", Toast.LENGTH_SHORT).show()

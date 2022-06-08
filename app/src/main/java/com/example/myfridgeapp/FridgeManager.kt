@@ -4,11 +4,22 @@ import android.animation.ObjectAnimator
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
+import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat.startActivity
+import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
 import com.example.myfridgeapp.databinding.ActivityFridgeManagerBinding
 
 class FridgeManager : AppCompatActivity() {
+    private lateinit var getResult : ActivityResultLauncher<Intent>
     lateinit var fridgeListDB: FridgeListDB
     lateinit var binding: ActivityFridgeManagerBinding
     private var isFabOpen = false
@@ -17,12 +28,18 @@ class FridgeManager : AppCompatActivity() {
         binding = ActivityFridgeManagerBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        getResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+            if(it.resultCode == RESULT_OK){
+                finish()
+            }
+        }
+
         initDB()
         initFridge()
         initFloatingBtn()
         initViewPager()
     }
-
     private fun initDB() {
         fridgeListDB = FridgeListDB(this)
     }
@@ -31,6 +48,13 @@ class FridgeManager : AppCompatActivity() {
         val adapter = OuterFridgeAdapter(fridgeList)
         val viewPager = binding.viewPager
         viewPager.adapter = adapter
+
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            Handler(Looper.getMainLooper()).postDelayed({
+                if(binding.swipeRefreshLayout.isRefreshing) binding.swipeRefreshLayout.isRefreshing = false
+            }, 1000)
+            adapter.notifyDataSetChanged()
+        }
     }
 
     //fridge db에서 가져오기
@@ -65,7 +89,7 @@ class FridgeManager : AppCompatActivity() {
         // 플로팅 버튼 클릭 이벤트 - 냉장고 추가
         binding.fabAddfridge.setOnClickListener {
             val intent = Intent(this, AddFridge::class.java)
-            startActivity(intent)
+            getResult.launch(intent)
         }
 
 

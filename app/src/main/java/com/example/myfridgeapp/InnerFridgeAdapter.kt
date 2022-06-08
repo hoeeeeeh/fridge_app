@@ -19,12 +19,16 @@ class InnerFridgeAdapter(private val fridge : FridgeData) : RecyclerView.Adapter
     }
 
     var itemClickListener: OnItemClickListener ?= null
+    private lateinit var fridgeInsideDB : MyDBHelper
+    private lateinit var productList : List<Product>
+
 
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val innermostFridge = itemView.findViewById<RecyclerView>(R.id.innerRecyclerView)
         val floorNum = itemView.findViewById<TextView>(R.id.floorNum)
-        init{}
+        init{
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -38,10 +42,14 @@ class InnerFridgeAdapter(private val fridge : FridgeData) : RecyclerView.Adapter
         holder.floorNum.setOnClickListener {
             val intent = Intent(holder.floorNum.context, ItemList::class.java)
             intent.putExtra("fridge", fridge)
+            intent.putExtra("selectedFloor", position + 1)
             holder.floorNum.context.startActivity(intent)
         }
-        holder.innermostFridge.layoutManager = LinearLayoutManager(holder.itemView.context, LinearLayoutManager.HORIZONTAL, true)
-        holder.innermostFridge.adapter = InnerMostFridgeAdapter(5)
+        holder.innermostFridge.layoutManager = LinearLayoutManager(holder.itemView.context, LinearLayoutManager.HORIZONTAL, false)
+        fridgeInsideDB = MyDBHelper(holder.floorNum.context)
+        productList = fridgeInsideDB.getProduct(fridge.name, position + 1)
+
+        holder.innermostFridge.adapter = InnerMostFridgeAdapter(productList)
         holder.innermostFridge.addOnItemTouchListener(object: RecyclerView.OnItemTouchListener{
             // 중첩 리사이클러뷰에서 부모(혹은 부모보다 위)와 스크롤 방향이 겹칠 때, 자식 우선으로 수행
             override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {

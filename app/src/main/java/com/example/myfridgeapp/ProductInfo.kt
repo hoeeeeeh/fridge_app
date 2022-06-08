@@ -112,7 +112,6 @@ class ProductInfo : AppCompatActivity() {
                     if (multipleTextWatcherFlag[0] && multipleTextWatcherFlag[1] && multipleTextWatcherFlag[2]) {
                         okButton.isEnabled = true
                     }
-
                 }
 
             })
@@ -138,7 +137,6 @@ class ProductInfo : AppCompatActivity() {
                     if (multipleTextWatcherFlag[0] && multipleTextWatcherFlag[1] && multipleTextWatcherFlag[2]) {
                         okButton.isEnabled = true
                     }
-
                 }
 
             })
@@ -197,8 +195,17 @@ class ProductInfo : AppCompatActivity() {
             }
 
             okButton.setOnClickListener {
+                pName = productNameEditText.text.toString()
+                pQuantity = quantityEditText.text.toString().toInt()
+                expDate = expEditText.text.toString().toInt()
                 val product = Product(0, fName, fFloor, pName, pQuantity, expDate)
                 if(myDBHelper.insertProduct(product)){
+                    binding.apply{
+                        productNameEditText.text.clear()
+                        quantityEditText.text.clear()
+                        expEditText.text.clear()
+                    }
+                    Toast.makeText(applicationContext,"제품을 냉장고에 넣었습니다.",Toast.LENGTH_SHORT).show()
                     Log.i("DB", "insert success")
                 }
                 else{

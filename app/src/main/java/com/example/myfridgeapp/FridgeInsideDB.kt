@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
+import android.widget.Toast
 
 class MyDBHelper(val context: Context): SQLiteOpenHelper(context, DB_NAME, null, DB_VERSION) {
 
@@ -59,13 +60,54 @@ class MyDBHelper(val context: Context): SQLiteOpenHelper(context, DB_NAME, null,
 
     }
 
-    fun getProductFromFID(findFID : Int): MutableList<Product>{
+    fun getAllProduct(): MutableList<Product>{
         val productList = mutableListOf<Product>()
+        var strsql = "select * from $TABLE_NAME order by $PID asc;"
 
-        var strsql = "select * from $TABLE_NAME where $FID = '$findFID' order by $FID asc;"
         val db = readableDatabase
         val cursor = db.rawQuery(strsql, null)
         val flag = cursor.count != 0
+
+        cursor.moveToFirst()
+
+        Log.d("name1", "cursorCount : ${cursor.count}")
+
+        val columncount = cursor.columnCount
+        Log.d("name1", "fridgeCount : $columncount")
+
+        do{
+            val columnPID = cursor.getColumnIndexOrThrow(MyDBHelper.PID)
+            val columnFNAME = cursor.getColumnIndexOrThrow(MyDBHelper.FNAME)
+            val columnFFLOOR = cursor.getColumnIndexOrThrow(MyDBHelper.FFLOOR)
+            val columnPNAME = cursor.getColumnIndexOrThrow(MyDBHelper.PNAME)
+            val columnFQUANTITY = cursor.getColumnIndexOrThrow(MyDBHelper.PQUANTITY)
+            val columnEXPDATE = cursor.getColumnIndexOrThrow(MyDBHelper.EXPDATE)
+
+            val product = Product(
+                cursor.getInt(columnPID),
+                cursor.getString(columnFNAME),
+                cursor.getInt(columnFFLOOR),
+                cursor.getString(columnPNAME),
+                cursor.getInt(columnFQUANTITY),
+                cursor.getInt(columnEXPDATE)
+            )
+            productList.add(product)
+        }while(cursor.moveToNext())
+        cursor.close()
+        db.close()
+        return productList
+    }
+
+    fun getProduct(findName : String, findFloor : Int): MutableList<Product>{
+        val productList = mutableListOf<Product>()
+        var strsql = "select * from $TABLE_NAME where ($FNAME = '$findName' AND $FFLOOR = '$findFloor') order by $PID asc;"
+
+        val db = readableDatabase
+        val cursor = db.rawQuery(strsql, null)
+        val flag = cursor.count != 0
+        if(!flag){
+            return productList
+        }
 
         cursor.moveToFirst()
 
