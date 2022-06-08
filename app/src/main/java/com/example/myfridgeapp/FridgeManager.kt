@@ -20,6 +20,7 @@ import com.example.myfridgeapp.databinding.ActivityFridgeManagerBinding
 
 class FridgeManager : AppCompatActivity() {
     private lateinit var getResult : ActivityResultLauncher<Intent>
+    private lateinit var adapter : OuterFridgeAdapter
     lateinit var fridgeListDB: FridgeListDB
     lateinit var binding: ActivityFridgeManagerBinding
     private var isFabOpen = false
@@ -29,32 +30,33 @@ class FridgeManager : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        getResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
-            if(it.resultCode == RESULT_OK){
-                finish()
-            }
-        }
-
         initDB()
         initFridge()
+        initIntent()
         initFloatingBtn()
         initViewPager()
     }
+
+    private fun initIntent() {
+        getResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+            if(it.resultCode == RESULT_OK){
+                finish()
+            }else if(it.resultCode == RESULT_CANCELED){
+                adapter.notifyDataSetChanged()
+            }
+        }
+    }
+
     private fun initDB() {
         fridgeListDB = FridgeListDB(this)
     }
 
     private fun initViewPager() {
-        val adapter = OuterFridgeAdapter(fridgeList)
+        adapter = OuterFridgeAdapter(fridgeList)
         val viewPager = binding.viewPager
         viewPager.adapter = adapter
+        viewPager.isNestedScrollingEnabled = false
 
-        binding.swipeRefreshLayout.setOnRefreshListener {
-            Handler(Looper.getMainLooper()).postDelayed({
-                if(binding.swipeRefreshLayout.isRefreshing) binding.swipeRefreshLayout.isRefreshing = false
-            }, 1000)
-            adapter.notifyDataSetChanged()
-        }
     }
 
     //fridge db에서 가져오기
@@ -79,7 +81,7 @@ class FridgeManager : AppCompatActivity() {
         // 플로팅 버튼 클릭 이벤트 - 바코드 인식 혹은 제품 추가
         binding.fabScanbarcode.setOnClickListener {
             val intent = Intent(this,ProductInfo::class.java)
-            startActivity(intent)
+            getResult.launch(intent)
         }
 
         binding.fabCart.setOnClickListener {
