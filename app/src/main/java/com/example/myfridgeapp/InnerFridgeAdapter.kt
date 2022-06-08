@@ -1,5 +1,6 @@
 package com.example.myfridgeapp
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -12,7 +13,7 @@ import com.example.myfridgeapp.R
 import com.example.myfridgeapp.databinding.FridgeRowBinding
 
 
-class InnerFridgeAdapter(private val fridgeFloor : Int) : RecyclerView.Adapter<InnerFridgeAdapter.ViewHolder>(){
+class InnerFridgeAdapter(private val fridge : FridgeData) : RecyclerView.Adapter<InnerFridgeAdapter.ViewHolder>(){
     interface OnItemClickListener{
         // fun OnItemClick(data: MyData)
     }
@@ -34,6 +35,11 @@ class InnerFridgeAdapter(private val fridgeFloor : Int) : RecyclerView.Adapter<I
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.floorNum.text = "${position+1} 층"
+        holder.floorNum.setOnClickListener {
+            val intent = Intent(holder.floorNum.context, ItemList::class.java)
+            intent.putExtra("fridge", fridge)
+            holder.floorNum.context.startActivity(intent)
+        }
         holder.innermostFridge.layoutManager = LinearLayoutManager(holder.itemView.context, LinearLayoutManager.HORIZONTAL, true)
         holder.innermostFridge.adapter = InnerMostFridgeAdapter(5)
         holder.innermostFridge.addOnItemTouchListener(object: RecyclerView.OnItemTouchListener{
@@ -58,6 +64,6 @@ class InnerFridgeAdapter(private val fridgeFloor : Int) : RecyclerView.Adapter<I
     }
 
     override fun getItemCount(): Int {
-        return fridgeFloor
+        return fridge.floor
     }
 }

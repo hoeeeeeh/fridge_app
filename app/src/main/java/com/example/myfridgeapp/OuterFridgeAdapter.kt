@@ -34,7 +34,7 @@ class OuterFridgeAdapter(val fridgeList: List<FridgeData>) : RecyclerView.Adapte
 
         holder.fridgeName.text = fridgeList[position].name
         holder.innerFridge.layoutManager = LinearLayoutManager(holder.itemView.context, LinearLayoutManager.VERTICAL, true)
-        holder.innerFridge.adapter = InnerFridgeAdapter(fridgeList[position].floor)
+        holder.innerFridge.adapter = InnerFridgeAdapter(fridgeList[position])
         holder.innerFridge.addItemDecoration(DividerItemDecoration(holder.itemView.context, LinearLayoutManager.VERTICAL))
 
 

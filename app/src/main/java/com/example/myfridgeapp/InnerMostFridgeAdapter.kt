@@ -27,6 +27,6 @@ class InnerMostFridgeAdapter(val fridgeFloor : Int) : RecyclerView.Adapter<Inner
     }
 
     override fun getItemCount(): Int {
-        return 6
+        return 5
     }
 }

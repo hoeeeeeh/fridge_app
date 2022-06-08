@@ -14,16 +14,16 @@
             android:id="@+id/fridgeName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:textSize="30sp"
-            android:layout_gravity="center"
+            android:layout_gravity="top|center"
             android:gravity="center"
-            android:text="냉장고이름!" />
+            android:padding="20dp"
+            android:text="냉장고이름!"
+            android:textSize="30sp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@drawable/back"
             android:padding="15dp"
             android:layout_margin="15dp"/>

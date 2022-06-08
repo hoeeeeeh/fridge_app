@@ -13,11 +13,10 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
-import com.example.myfridgeapp.databinding.ActivityMain3Binding
+import com.example.myfridgeapp.databinding.ActivityProductInfoBinding
 
 class ProductInfo : AppCompatActivity() {
-    private lateinit var binding: ActivityMain3Binding
-
+    private lateinit var binding: ActivityProductInfoBinding
     private val activityResultLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()){
         if(it.resultCode == Activity.RESULT_OK){    // Barcode 성공적 인식
@@ -43,7 +42,7 @@ class ProductInfo : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMain3Binding.inflate(layoutInflater)
+        binding = ActivityProductInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initDB()
         initLayout()

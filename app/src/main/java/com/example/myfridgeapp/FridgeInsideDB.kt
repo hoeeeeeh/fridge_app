@@ -57,7 +57,7 @@ class MyDBHelper(val context: Context): SQLiteOpenHelper(context, DB_NAME, null,
     fun getProductFromFID(findFID : Int): MutableList<Product>{
         val productList = mutableListOf<Product>()
 
-        var strsql = "select * from $TABLE_NAME where $FID = '$findFID';"
+        var strsql = "select * from $TABLE_NAME where $FID = '$findFID' order by $FID asc;"
         val db = readableDatabase
         val cursor = db.rawQuery(strsql, null)
         val flag = cursor.count != 0

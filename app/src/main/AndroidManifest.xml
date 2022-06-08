@@ -53,7 +53,7 @@
             android:exported="false"
             />
         <activity
-            android:name=".item_list"
+            android:name=".ItemList"
             android:exported="false"
              />
         <activity
