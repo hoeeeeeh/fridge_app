@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".MainActivity3">
+    tools:context=".ProductInfo">
 
     <TextView
         android:id="@+id/titleTextView"

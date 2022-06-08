@@ -54,7 +54,7 @@ class FridgeManager : AppCompatActivity() {
 
         // 플로팅 버튼 클릭 이벤트 - 바코드 인식 혹은 제품 추가
         binding.fabScanbarcode.setOnClickListener {
-            val intent = Intent(this,BarcodeScan::class.java)
+            val intent = Intent(this,ProductInfo::class.java)
             startActivity(intent)
         }
 

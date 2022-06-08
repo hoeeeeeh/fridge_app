@@ -24,7 +24,7 @@
         tools:targetApi="30">
 
         <activity
-            android:name=".MainActivity3"
+            android:name=".ProductInfo"
             android:exported="true" >
         </activity>
         <activity

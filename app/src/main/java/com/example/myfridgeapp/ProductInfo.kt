@@ -15,7 +15,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import com.example.myfridgeapp.databinding.ActivityMain3Binding
 
-class MainActivity3 : AppCompatActivity() {
+class ProductInfo : AppCompatActivity() {
     private lateinit var binding: ActivityMain3Binding
 
     private val activityResultLauncher = registerForActivityResult(
@@ -140,7 +140,7 @@ class MainActivity3 : AppCompatActivity() {
 
             })
 
-            myAdapter = ArrayAdapter<String>(this@MainActivity3, android.R.layout.simple_spinner_dropdown_item)
+            myAdapter = ArrayAdapter<String>(this@ProductInfo, android.R.layout.simple_spinner_dropdown_item)
 
             // 냉장고 db에 대한 정보를 가져오기.
             for(i:Int in 0 until items.size) {
