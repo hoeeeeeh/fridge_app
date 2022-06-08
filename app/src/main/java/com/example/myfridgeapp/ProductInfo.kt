@@ -39,6 +39,7 @@ class ProductInfo : AppCompatActivity() {
     // 냉장고 db 가져와서 넣어줄 예정
     lateinit var items : MutableList<FridgeData>
     lateinit var myAdapter:ArrayAdapter<String>
+    lateinit var myAdapter2:ArrayAdapter<Int>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +52,8 @@ class ProductInfo : AppCompatActivity() {
 
     private fun initLayout() {
         var pName: String = ""    // 상품 이름
+        var fFloor = 0            // 냉장고의 '층'
+        var fName = ""
         var fId: Int = 0         // 냉장고 번호
         var pQuantity: Int = 0  // 상품 수량
         var expDate: Int = 0    // 유통 기한
@@ -113,7 +116,7 @@ class ProductInfo : AppCompatActivity() {
 
             })
 
-            // 상품 유통기한 입력력
+            // 상품 유통기한 입력
             expEditText.addTextChangedListener(object : TextWatcher {
 //                var result: String = ""
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -140,14 +143,22 @@ class ProductInfo : AppCompatActivity() {
             })
 
             myAdapter = ArrayAdapter<String>(this@ProductInfo, android.R.layout.simple_spinner_dropdown_item)
+            myAdapter2 = ArrayAdapter<Int>(this@ProductInfo, android.R.layout.simple_spinner_dropdown_item)
+
 
             // 냉장고 db에 대한 정보를 가져오기.
             for(i:Int in 0 until items.size) {
                 myAdapter.add(items[i].name)
             }
-            spinner.adapter = myAdapter
 
-            // 냉장고 spinner
+            for(i:Int in 0 until items.size){
+                myAdapter2.add(items[i].fid)
+            }
+
+            spinner.adapter = myAdapter
+            spinner2.adapter = myAdapter2
+
+            // 냉장고 spinner (name)
             spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
                     p0: AdapterView<*>?,
@@ -156,7 +167,7 @@ class ProductInfo : AppCompatActivity() {
                     id: Long
                 ) {
                     // spinner 의 item 이 선택되었을 때, 해당 position 에 해당하는 name, pid 가져와야 함.
-                    fId = items[position].fid
+                    fName = items[position].name
 
                 }
 
@@ -166,8 +177,19 @@ class ProductInfo : AppCompatActivity() {
 
             }
 
+            // 냉장고 spinner (floor)
+            spinner2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+                    fFloor = items[position].floor
+                }
+
+                override fun onNothingSelected(p0: AdapterView<*>?) {
+                }
+
+            }
+
             okButton.setOnClickListener {
-                val product = Product(0, fId, pName, pQuantity, expDate)
+                val product = Product(0, fName, fFloor, pName, pQuantity, expDate)
                 if(myDBHelper.insertProduct(product)){
                     Log.i("DB", "insert success")
                 }
@@ -197,16 +219,17 @@ class ProductInfo : AppCompatActivity() {
 
     private fun callInputTypeAlertDlg(){
         val builder = AlertDialog.Builder(this)
-        builder.setMessage("어떤 방식을 선택하실 것인가요?")
-            .setTitle("상품 추가")
-            .setPositiveButton("텍스트 입력"){
-                _, _ ->
-            }
-            .setNegativeButton("바코드 인식"){
+        builder.setMessage("바코드로 입력하시겠습니까?")
+            .setTitle("바코드 촬영")
+            .setPositiveButton("OK"){
                 _, _ ->
                 // 바코드 인식 화면으로 보냄냄
-               var intent = Intent(this, MainActivity::class.java)
+                var intent = Intent(this, BarcodeScan::class.java)
                 activityResultLauncher.launch(intent)
+            }
+            .setNegativeButton("CANCEL"){
+                _, _ ->
+
             }
         val dlg = builder.create()
         dlg.show()

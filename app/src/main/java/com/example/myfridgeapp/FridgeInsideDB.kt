@@ -14,6 +14,8 @@ class MyDBHelper(val context: Context): SQLiteOpenHelper(context, DB_NAME, null,
         const val TABLE_NAME = "products"
         const val PID = "pid"
         const val FID = "fid"
+        const val FNAME = "fname"
+        const val FFLOOR = "ffloor"
         const val PNAME = "pname"
         const val PQUANTITY = "pquantity"
         const val EXPDATE = "expdate"
@@ -23,7 +25,9 @@ class MyDBHelper(val context: Context): SQLiteOpenHelper(context, DB_NAME, null,
     override fun onCreate(p0: SQLiteDatabase?) {
         val createTable = "create table if not exists $TABLE_NAME(" +
                 "$PID integer primary key autoincrement, " +
-                "$FID integer, " +
+//                "$FID integer, " +
+                "$FNAME text," +
+                "$FFLOOR text, " +
                 "$PNAME text, " +
                 "$PQUANTITY integer, " +
                 "$EXPDATE integer);"
@@ -41,7 +45,8 @@ class MyDBHelper(val context: Context): SQLiteOpenHelper(context, DB_NAME, null,
     // product 객체를 생성해서 넘겨주면 db에 data 삽입
     fun insertProduct(product: Product): Boolean {
         val value = ContentValues()
-        value.put(FID, product.fid)
+        value.put(FNAME, product.fName)
+        value.put(FFLOOR, product.fFloor)
         value.put(PNAME, product.pname)
         value.put(PQUANTITY, product.pquantity)
         value.put(EXPDATE, product.expdate)
@@ -71,14 +76,16 @@ class MyDBHelper(val context: Context): SQLiteOpenHelper(context, DB_NAME, null,
 
         do{
             val columnPID = cursor.getColumnIndexOrThrow(MyDBHelper.PID)
-            val columnFID = cursor.getColumnIndexOrThrow(MyDBHelper.FID)
+            val columnFNAME = cursor.getColumnIndexOrThrow(MyDBHelper.FNAME)
+            val columnFFLOOR = cursor.getColumnIndexOrThrow(MyDBHelper.FFLOOR)
             val columnPNAME = cursor.getColumnIndexOrThrow(MyDBHelper.PNAME)
             val columnFQUANTITY = cursor.getColumnIndexOrThrow(MyDBHelper.PQUANTITY)
             val columnEXPDATE = cursor.getColumnIndexOrThrow(MyDBHelper.EXPDATE)
 
             val product = Product(
                 cursor.getInt(columnPID),
-                cursor.getInt(columnFID),
+                cursor.getString(columnFNAME),
+                cursor.getInt(columnFFLOOR),
                 cursor.getString(columnPNAME),
                 cursor.getInt(columnFQUANTITY),
                 cursor.getInt(columnEXPDATE)
