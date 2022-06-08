@@ -8,7 +8,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="128dp"
+        android:layout_height="140dp"
         app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,7 +26,7 @@
                 android:layout_width="32dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
-                android:gravity="top"
+                android:gravity="center"
                 android:text="CheckBox" />
 
             <LinearLayout
@@ -38,9 +38,7 @@
                     android:id="@+id/itemName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_margin="10dp"
                     android:text="test 중입니다."
                     android:textColor="#454242"
                     android:textSize="16sp"
@@ -58,12 +56,14 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_margin="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight="1"
                         android:backgroundTint="@android:color/darker_gray"
                         android:text="-"
-                        android:textSize="20dp"
                         android:textColor="#454242"
+                        android:textSize="20dp"
                         android:textStyle="bold"
                         app:cornerRadius="15dp"
                         tools:ignore="DuplicateIds" />
@@ -73,13 +73,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:textAlignment="center"
-                        android:textSize="20dp"
                         android:backgroundTint="@android:color/darker_gray"
                         android:text="1"
+                        android:textAlignment="center"
                         android:textColor="#454242"
+                        android:textSize="20dp"
                         android:textStyle="bold"
                         app:cornerRadius="15dp"
                         tools:ignore="RtlCompat" />
@@ -89,30 +88,56 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="10dp"
                         android:layout_weight="1"
                         android:backgroundTint="@android:color/darker_gray"
                         android:text="+"
-                        android:textSize="20dp"
                         android:textColor="#454242"
+                        android:textSize="20dp"
                         android:textStyle="bold"
                         app:cornerRadius="15dp" />
 
                 </LinearLayout>
             </LinearLayout>
 
-            <Button
-                android:id="@+id/deletebtn"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="15dp"
-                android:layout_weight="1"
-                android:backgroundTint="@android:color/darker_gray"
-                android:text="삭제"
-                android:textColor="#454242"
-                android:textStyle="bold"
-                app:cornerRadius="15dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="2">
+
+                <Button
+                    android:id="@+id/deletebtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/darker_gray"
+                    android:text="삭제"
+                    android:textColor="#454242"
+                    android:textStyle="bold"
+                    app:cornerRadius="15dp" />
+
+                <Button
+                    android:id="@+id/hrefbutton"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/darker_gray"
+                    android:text="온라인 검색"
+                    android:textColor="#454242"
+                    android:textStyle="bold"
+                    app:cornerRadius="15dp" />
+            </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

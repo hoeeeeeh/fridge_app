@@ -30,7 +30,7 @@ class MyCartItemAdapter(val items: ArrayList<CartData>) : RecyclerView.Adapter<M
             binding.decreasebtn.setOnClickListener {
                 decreaseListener?.OnItemClick(items[adapterPosition], adapterPosition)
             }
-            binding.itemName.setOnClickListener {
+            binding.hrefbutton.setOnClickListener {
                 hrefListener?.OnItemClick(items[adapterPosition], adapterPosition)
             }
             binding.deletebtn.setOnClickListener {

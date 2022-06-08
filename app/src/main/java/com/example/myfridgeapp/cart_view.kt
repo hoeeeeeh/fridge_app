@@ -23,6 +23,7 @@ class cart_view : AppCompatActivity() {
     val data: ArrayList<CartData> = ArrayList()
     lateinit var cartItemAdapter: MyCartItemAdapter
     lateinit var myCartDBHelper: MyCartDBHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = CartViewBinding.inflate(layoutInflater)
@@ -65,7 +66,7 @@ class cart_view : AppCompatActivity() {
 
     private fun init() {
         myCartDBHelper = MyCartDBHelper(this)
-        //myCartDBHelper.insertProduct(CartData(0,"당근",2))
+        //myCartDBHelper.insertProduct(CartData(0,"당근",20))
         myCartDBHelper.savetorecycler()
         initRecyclerView()
     }
@@ -85,14 +86,6 @@ class cart_view : AppCompatActivity() {
                 now_amt++
                 data.menuCnt++
                 var new_menu = CartData(now_pid, now_name, now_amt)
-                val result = myCartDBHelper.updateProduct(new_menu)
-                if (result) {
-                    Toast.makeText(this@cart_view, "Data UPDATE SUCCESS", Toast.LENGTH_SHORT)
-                        .show()
-                } else {
-                    Toast.makeText(this@cart_view, "Data UPDATE FAILED", Toast.LENGTH_SHORT)
-                        .show()
-                }
                 cartItemAdapter.notifyItemChanged(pos)
             }
         }
@@ -106,30 +99,7 @@ class cart_view : AppCompatActivity() {
                 now_amt--
                 var new_menu = CartData(now_pid, now_name, now_amt)
 
-                val result = myCartDBHelper.updateProduct(new_menu)
-                if (result) {
-                    Toast.makeText(this@cart_view, "Data UPDATE SUCCESS", Toast.LENGTH_SHORT)
-                        .show()
-                } else {
-                    Toast.makeText(this@cart_view, "Data UPDATE FAILED", Toast.LENGTH_SHORT)
-                        .show()
-                }
                 if (now_amt == 0) {
-                    val result = myCartDBHelper.deleteProduct(now_pid.toString())
-                    if (result) {
-
-                        Toast.makeText(
-                            this@cart_view,
-                            "Data DELETE SUCCESS",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    } else {
-                        Toast.makeText(
-                            this@cart_view,
-                            "Data DELETE FAILED",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
                     cartItemAdapter.removeItem(pos);
                 } else {
                     data.menuCnt--
@@ -155,14 +125,6 @@ class cart_view : AppCompatActivity() {
                 var now_pid = data.pid
 
                 val result = myCartDBHelper.deleteProduct(now_pid.toString())
-                if (result) {
-
-                    Toast.makeText(this@cart_view, "Data DELETE SUCCESS", Toast.LENGTH_SHORT)
-                        .show()
-                } else {
-                    Toast.makeText(this@cart_view, "Data DELETE FAILED", Toast.LENGTH_SHORT)
-                        .show()
-                }
                 cartItemAdapter.removeItem(pos);
                 cartItemAdapter.notifyItemChanged(pos)
 
