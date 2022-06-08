@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
+import androidx.core.graphics.createBitmap
 import com.example.myfridgeapp.databinding.ActivityProductInfoBinding
 
 class ProductInfo : AppCompatActivity() {
@@ -151,8 +152,8 @@ class ProductInfo : AppCompatActivity() {
                 myAdapter.add(items[i].name)
             }
 
-            for(i:Int in 0 until items.size){
-                myAdapter2.add(items[i].fid)
+            for(i:Int in 0 until items[0].floor){
+                myAdapter2.add(i)
             }
 
             spinner.adapter = myAdapter
@@ -168,6 +169,12 @@ class ProductInfo : AppCompatActivity() {
                 ) {
                     // spinner 의 item 이 선택되었을 때, 해당 position 에 해당하는 name, pid 가져와야 함.
                     fName = items[position].name
+                    myAdapter2.clear()
+                    for(i :Int in 0 until items[position].floor){
+                        myAdapter2.add(i + 1)
+
+                    }
+                    spinner2.adapter = myAdapter2
 
                 }
 
@@ -180,7 +187,8 @@ class ProductInfo : AppCompatActivity() {
             // 냉장고 spinner (floor)
             spinner2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-                    fFloor = items[position].floor
+                    fFloor = (position + 1)
+//                    Toast.makeText(this@ProductInfo, "$fFloor", Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onNothingSelected(p0: AdapterView<*>?) {
