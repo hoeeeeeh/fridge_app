@@ -66,7 +66,6 @@ class FridgeManager : AppCompatActivity() {
         binding.fabAddfridge.setOnClickListener {
             val intent = Intent(this, AddFridge::class.java)
             startActivity(intent)
-            finish()
         }
 
 
