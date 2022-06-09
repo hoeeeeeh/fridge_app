@@ -111,6 +111,46 @@ class MyDBHelper(val context: Context): SQLiteOpenHelper(context, DB_NAME, null,
         db.close()
         return flag
     }
+    fun getProductRealTime(fName : String, pName : String, findFloor : Int): ArrayList<Product>{
+        val productList = ArrayList<Product>()
+        var strsql = "select * from $TABLE_NAME where ($FNAME = '$fName' AND $FFLOOR = '$findFloor' AND $PNAME like '%$pName%') order by $PID asc;"
+
+        val db = readableDatabase
+        val cursor = db.rawQuery(strsql, null)
+        val flag = cursor.count != 0
+        if(!flag){
+            return productList
+        }
+
+        cursor.moveToFirst()
+
+        Log.d("name1", "cursorCount : ${cursor.count}")
+
+        val columncount = cursor.columnCount
+        Log.d("name1", "fridgeCount : $columncount")
+
+        do{
+            val columnPID = cursor.getColumnIndexOrThrow(MyDBHelper.PID)
+            val columnFNAME = cursor.getColumnIndexOrThrow(MyDBHelper.FNAME)
+            val columnFFLOOR = cursor.getColumnIndexOrThrow(MyDBHelper.FFLOOR)
+            val columnPNAME = cursor.getColumnIndexOrThrow(MyDBHelper.PNAME)
+            val columnFQUANTITY = cursor.getColumnIndexOrThrow(MyDBHelper.PQUANTITY)
+            val columnEXPDATE = cursor.getColumnIndexOrThrow(MyDBHelper.EXPDATE)
+
+            val product = Product(
+                cursor.getInt(columnPID),
+                cursor.getString(columnFNAME),
+                cursor.getInt(columnFFLOOR),
+                cursor.getString(columnPNAME),
+                cursor.getInt(columnFQUANTITY),
+                cursor.getInt(columnEXPDATE)
+            )
+            productList.add(product)
+        }while(cursor.moveToNext())
+        cursor.close()
+        db.close()
+        return productList
+    }
 
     fun getProduct(findName : String, findFloor : Int): ArrayList<Product>{
         val productList = ArrayList<Product>()

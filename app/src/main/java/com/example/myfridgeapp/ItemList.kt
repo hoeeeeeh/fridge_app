@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,24 +25,45 @@ class ItemList : AppCompatActivity() {
     lateinit var fridgeInsideDB : MyDBHelper
     lateinit var fridge : FridgeData
     lateinit var binding : ActivityItemListBinding
+    lateinit var adapter : SelectedFloorAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityItemListBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
         initDB()
         initFridgeData()
         initLayout()
     }
 
+
     private fun initDB() {
+
         fridgeInsideDB = MyDBHelper(this)
     }
 
     private fun initLayout() {
+        adapter = SelectedFloorAdapter(productList)
+
         binding.apply{
             floorItemList.text = "${fridge.name} ${selectedFloor}층"
             productListRecyclerView.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, true)
-            productListRecyclerView.adapter = SelectedFloorAdapter(productList)
+            productListRecyclerView.adapter = adapter
+            searchbar.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+                android.widget.SearchView.OnQueryTextListener {
+                override fun onQueryTextChange(qString: String): Boolean {
+                    val productListTemp = fridgeInsideDB.getProductRealTime(fridge.name, qString, selectedFloor)
+                    productList.clear()
+                    for(i in productListTemp){
+                        productList.add(i)
+                    }
+                    adapter.notifyDataSetChanged()
+                    return true
+                }
+                override fun onQueryTextSubmit(qString: String): Boolean {
+                    return true
+                }
+            })
         }
     }
 
@@ -55,10 +77,6 @@ class ItemList : AppCompatActivity() {
             productList = fridgeInsideDB.getProduct(fridge.name, selectedFloor)
         }else{
             Toast.makeText(this, "냉장고 정보를 불러오지 못했습니다.", Toast.LENGTH_SHORT).show()
-        }
-
-        for(i in productList){
-            Log.d("LogTest : ProductList","${i.pname} ${i.fName} ${i.fFloor}층 ${i.pquantity} ${i.expdate}")
         }
     }
 }
