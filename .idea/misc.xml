@@ -3,6 +3,30 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/mobile_programming_silseb_src/Merging/app/src/main/res/drawable/back.xml" value="0.311" />
+        <entry key="..\:/mobile_programming_silseb_src/Merging/app/src/main/res/drawable/btnborder.xml" value="0.3175" />
+        <entry key="..\:/mobile_programming_silseb_src/Merging/app/src/main/res/drawable/cartviewborder.xml" value="0.311" />
+        <entry key="..\:/mobile_programming_silseb_src/Merging/app/src/main/res/drawable/recyclerviewborder.xml" value="0.311" />
+        <entry key="..\:/mobile_programming_silseb_src/Merging/app/src/main/res/drawable/rounded_btn.xml" value="0.311" />
+        <entry key="..\:/mobile_programming_silseb_src/Merging/app/src/main/res/drawable/rounded_edittext.xml" value="0.311" />
+        <entry key="..\:/mobile_programming_silseb_src/Merging/app/src/main/res/drawable/search_edittext.xml" value="0.311" />
+        <entry key="..\:/mobile_programming_silseb_src/Merging/app/src/main/res/layout/activity_add_fridge.xml" value="0.3145833333333333" />
+        <entry key="..\:/mobile_programming_silseb_src/Merging/app/src/main/res/layout/activity_barcode_scan.xml" value="0.3145833333333333" />
+        <entry key="..\:/mobile_programming_silseb_src/Merging/app/src/main/res/layout/activity_first_launch.xml" value="0.3145833333333333" />
+        <entry key="..\:/mobile_programming_silseb_src/Merging/app/src/main/res/layout/activity_fridge_manager.xml" value="0.3145833333333333" />
+        <entry key="..\:/mobile_programming_silseb_src/Merging/app/src/main/res/layout/activity_item_list.xml" value="0.3145833333333333" />
+        <entry key="..\:/mobile_programming_silseb_src/Merging/app/src/main/res/layout/activity_main.xml" value="0.3145833333333333" />
+        <entry key="..\:/mobile_programming_silseb_src/Merging/app/src/main/res/layout/activity_popup_dialog.xml" value="0.3145833333333333" />
+        <entry key="..\:/mobile_programming_silseb_src/Merging/app/src/main/res/layout/activity_product_info.xml" value="0.3145833333333333" />
+        <entry key="..\:/mobile_programming_silseb_src/Merging/app/src/main/res/layout/addfoodmenu.xml" value="0.3145833333333333" />
+        <entry key="..\:/mobile_programming_silseb_src/Merging/app/src/main/res/layout/barcode_scan.xml" value="0.3145833333333333" />
+        <entry key="..\:/mobile_programming_silseb_src/Merging/app/src/main/res/layout/cart_view.xml" value="0.3145833333333333" />
+        <entry key="..\:/mobile_programming_silseb_src/Merging/app/src/main/res/layout/fridge_column.xml" value="0.3145833333333333" />
+        <entry key="..\:/mobile_programming_silseb_src/Merging/app/src/main/res/layout/fridge_row.xml" value="0.3145833333333333" />
+        <entry key="..\:/mobile_programming_silseb_src/Merging/app/src/main/res/layout/innerfridge_row.xml" value="0.3145833333333333" />
+        <entry key="..\:/mobile_programming_silseb_src/Merging/app/src/main/res/layout/item_row.xml" value="0.3145833333333333" />
+        <entry key="..\:/mobile_programming_silseb_src/Merging/app/src/main/res/layout/row.xml" value="0.3145833333333333" />
+        <entry key="..\:/mobile_programming_silseb_src/Merging/app/src/main/res/layout/shelf_item_list.xml" value="0.3145833333333333" />
         <entry key="..\:/mobile_programming_silseb_src/myfridgeapp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2365" />
         <entry key="..\:/mobile_programming_silseb_src/myfridgeapp/app/src/main/res/drawable/imageborder.xml" value="0.3165" />
         <entry key="..\:/mobile_programming_silseb_src/myfridgeapp/app/src/main/res/drawable/rounded_edittext.xml" value="0.1565" />
@@ -21,7 +45,6 @@
         <entry key="app/src/main/res/drawable/ic_baseline_access_alarm_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/imageborder.xml" value="0.508" />
         <entry key="app/src/main/res/drawable/recyclerViewBorder.xml" value="0.508" />
-        <entry key="app/src/main/res/drawable/rounded_btn.xml" value="0.508" />
         <entry key="app/src/main/res/layout/activity_add_fridge.xml" value="0.3729166666666667" />
         <entry key="app/src/main/res/layout/activity_barcode_scan.xml" value="0.19270833333333334" />
         <entry key="app/src/main/res/layout/activity_first_launch.xml" value="0.3729166666666667" />
@@ -29,7 +52,6 @@
         <entry key="app/src/main/res/layout/activity_item_list.xml" value="0.5130208333333334" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3729166666666667" />
         <entry key="app/src/main/res/layout/activity_main3.xml" value="0.19270833333333334" />
-        <entry key="app/src/main/res/layout/activity_popup_dialog.xml" value="0.49895833333333334" />
         <entry key="app/src/main/res/layout/activity_product_info.xml" value="0.5848958333333333" />
         <entry key="app/src/main/res/layout/addfoodmenu.xml" value="0.3729166666666667" />
         <entry key="app/src/main/res/layout/barcode_scan.xml" value="0.3729166666666667" />
@@ -55,7 +77,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.2264151024877837" />
+        <option name="scale" value="0.3145833333333333" />
       </ProjectState>
     </option>
   </component>

@@ -28,22 +28,13 @@
 
         <SearchView
             android:id="@+id/searchbar"
-            android:layout_width="250dp"
-            android:layout_height="48dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_margin="15dp"
             android:background="@drawable/search_edittext"
             android:hint="    검색"
             android:queryHint="    검색" />
 
-        <ImageButton
-            android:id="@+id/addtocartbtn"
-            android:layout_width="71dp"
-            android:layout_height="48dp"
-
-            android:background="#00000000"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/addtocartbtn"
-            tools:ignore="SpeakableTextPresentCheck" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

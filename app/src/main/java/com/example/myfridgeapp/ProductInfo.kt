@@ -249,8 +249,4 @@ class ProductInfo : AppCompatActivity() {
         val dlg = builder.create()
         dlg.show()
     }
-
-
-
-
 }

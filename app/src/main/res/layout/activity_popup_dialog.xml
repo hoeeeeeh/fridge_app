@@ -25,24 +25,32 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/addcartbtn"
-            android:layout_margin="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_btn"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="15dp"
             android:layout_weight="1"
-            android:textSize="10sp"
-            android:text="장바구니에 추가" />
+            android:background="@drawable/rounded_btn"
+            android:text="장바구니에 추가"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/deleteproductbtn"
-            android:layout_margin="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_btn"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
             android:layout_weight="1"
-            android:textSize="10sp"
-            android:text="삭제" />
+            android:background="@drawable/rounded_btn"
+            android:text="삭제"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
     </LinearLayout>
 </LinearLayout>

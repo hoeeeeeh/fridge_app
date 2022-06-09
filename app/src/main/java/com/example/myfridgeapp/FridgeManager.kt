@@ -105,13 +105,15 @@ class FridgeManager : AppCompatActivity() {
         // 플로팅 액션 버튼 닫기 - 열려있는 플로팅 버튼 집어넣는 애니메이션
         if (isFabOpen) {
             ObjectAnimator.ofFloat(binding.fabCart, "translationY", 0f).start()
+            ObjectAnimator.ofFloat(binding.fabAddfridge, "translationX", 0f).start()
             ObjectAnimator.ofFloat(binding.fabAddfridge, "translationY", 0f).start()
-            ObjectAnimator.ofFloat(binding.fabScanbarcode, "translationY", 0f).start()
+            ObjectAnimator.ofFloat(binding.fabScanbarcode, "translationX", 0f).start()
             ObjectAnimator.ofFloat(binding.fabMain, View.ROTATION, 45f, 0f).start()
         } else { // 플로팅 액션 버튼 열기 - 닫혀있는 플로팅 버튼 꺼내는 애니메이션
-            ObjectAnimator.ofFloat(binding.fabCart, "translationY", -540f).start()
-            ObjectAnimator.ofFloat(binding.fabAddfridge, "translationY", -360f).start()
-            ObjectAnimator.ofFloat(binding.fabScanbarcode, "translationY", -180f).start()
+            ObjectAnimator.ofFloat(binding.fabCart, "translationY", -180f).start()
+            ObjectAnimator.ofFloat(binding.fabAddfridge, "translationX", -165f).start()
+            ObjectAnimator.ofFloat(binding.fabAddfridge, "translationY", -165f).start()
+            ObjectAnimator.ofFloat(binding.fabScanbarcode, "translationX", -180f).start()
             ObjectAnimator.ofFloat(binding.fabMain, View.ROTATION, 0f, 45f).start()
         }
 

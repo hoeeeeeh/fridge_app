@@ -3,18 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="match_parent"
-        android:layout_height="140dp"
-        app:cardCornerRadius="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.023">
+    android:layout_height="wrap_content"
+    android:background="@drawable/cartviewborder">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,8 +15,8 @@
                 android:id="@+id/checkBox"
                 android:layout_width="32dp"
                 android:layout_height="match_parent"
-                android:layout_gravity="start"
-                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:gravity="top"
                 android:text="CheckBox" />
 
             <LinearLayout
@@ -41,7 +31,7 @@
                     android:layout_margin="10dp"
                     android:text="test 중입니다."
                     android:textColor="#454242"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
 
@@ -51,18 +41,18 @@
                     android:orientation="horizontal"
                     android:weightSum="3">
 
-                    <Button
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/decreasebtn"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
+                        android:layout_height="40dp"
+                        android:layout_gravity="top"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:layout_marginLeft="10dp"
+                        android:background="@drawable/recyclerviewborder"
                         android:layout_weight="1"
-                        android:backgroundTint="@android:color/darker_gray"
                         android:text="-"
-                        android:textColor="#454242"
+                        android:textColor="@color/black"
                         android:textSize="20dp"
                         android:textStyle="bold"
                         app:cornerRadius="15dp"
@@ -72,7 +62,8 @@
                         android:id="@+id/amt"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="10dp"
                         android:layout_weight="1"
                         android:backgroundTint="@android:color/darker_gray"
                         android:text="1"
@@ -83,18 +74,18 @@
                         app:cornerRadius="15dp"
                         tools:ignore="RtlCompat" />
 
-                    <Button
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/increasebtn"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
+                        android:layout_height="40dp"
+                        android:layout_gravity="top"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:layout_marginRight="10dp"
+                        android:background="@drawable/recyclerviewborder"
                         android:layout_weight="1"
-                        android:backgroundTint="@android:color/darker_gray"
                         android:text="+"
-                        android:textColor="#454242"
+                        android:textColor="@color/black"
                         android:textSize="20dp"
                         android:textStyle="bold"
                         app:cornerRadius="15dp" />
@@ -105,40 +96,39 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:weightSum="2">
+                android:orientation="vertical">
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/deletebtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@android:color/darker_gray"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/recyclerviewborder"
                     android:text="삭제"
                     android:textColor="#454242"
+                    android:textSize="13sp"
                     android:textStyle="bold"
                     app:cornerRadius="15dp" />
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/hrefbutton"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@android:color/darker_gray"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/recyclerviewborder"
                     android:text="온라인 검색"
                     android:textColor="#454242"
+                    android:textSize="11sp"
                     android:textStyle="bold"
                     app:cornerRadius="15dp" />
             </LinearLayout>
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
 
 </LinearLayout>
