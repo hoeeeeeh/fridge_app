@@ -6,6 +6,9 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfridgeapp.InnerMostFridgeAdapter
@@ -22,12 +25,14 @@ class InnerFridgeAdapter(private val fridge : FridgeData) : RecyclerView.Adapter
     private lateinit var fridgeInsideDB : MyDBHelper
     private lateinit var productList : List<Product>
 
+    private lateinit var getResult : ActivityResultLauncher<Intent>
 
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val innermostFridge = itemView.findViewById<RecyclerView>(R.id.innerRecyclerView)
         val floorNum = itemView.findViewById<TextView>(R.id.floorNum)
         init{
+
         }
     }
 
@@ -38,12 +43,14 @@ class InnerFridgeAdapter(private val fridge : FridgeData) : RecyclerView.Adapter
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val fridgeManager = holder.innermostFridge.context as FridgeManager
         holder.floorNum.text = "${position+1} 층"
         holder.floorNum.setOnClickListener {
             val intent = Intent(holder.floorNum.context, ItemList::class.java)
             intent.putExtra("fridge", fridge)
             intent.putExtra("selectedFloor", position + 1)
-            holder.floorNum.context.startActivity(intent)
+            fridgeManager.startActivityResult(intent)
+            //holder.floorNum.context.startActivity(intent)
         }
         holder.innermostFridge.layoutManager = LinearLayoutManager(holder.itemView.context, LinearLayoutManager.HORIZONTAL, false)
         fridgeInsideDB = MyDBHelper(holder.floorNum.context)

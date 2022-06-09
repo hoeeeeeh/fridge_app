@@ -98,8 +98,22 @@ class MyDBHelper(val context: Context): SQLiteOpenHelper(context, DB_NAME, null,
         return productList
     }
 
-    fun getProduct(findName : String, findFloor : Int): MutableList<Product>{
-        val productList = mutableListOf<Product>()
+    fun deleteProduct(product: Product) : Boolean{
+        val strsql = "select * from $TABLE_NAME where $PID='${product.pid}';" // select * from product where pname = 'pname'
+        val db = writableDatabase
+        val cursor = db.rawQuery(strsql, null)
+        val flag = cursor.count != 0
+        if(flag){
+            cursor.moveToFirst()
+            db.delete(TABLE_NAME, "$PID=?", arrayOf(product.pid.toString()))
+        }
+        cursor.close()
+        db.close()
+        return flag
+    }
+
+    fun getProduct(findName : String, findFloor : Int): ArrayList<Product>{
+        val productList = ArrayList<Product>()
         var strsql = "select * from $TABLE_NAME where ($FNAME = '$findName' AND $FFLOOR = '$findFloor') order by $PID asc;"
 
         val db = readableDatabase

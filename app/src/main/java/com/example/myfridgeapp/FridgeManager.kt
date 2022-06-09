@@ -47,6 +47,10 @@ class FridgeManager : AppCompatActivity() {
         }
     }
 
+    fun startActivityResult(intent : Intent){
+        getResult.launch(intent)
+    }
+
     private fun initDB() {
         fridgeListDB = FridgeListDB(this)
     }

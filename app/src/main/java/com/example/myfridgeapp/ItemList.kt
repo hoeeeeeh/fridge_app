@@ -19,7 +19,7 @@ import com.example.myfridgeapp.databinding.ItemRowBinding
 import com.example.refrigerator_manage.CartData
 
 class ItemList : AppCompatActivity() {
-    private lateinit var productList : MutableList<Product>
+    private lateinit var productList : ArrayList<Product>
     private var selectedFloor : Int = -1
     lateinit var fridgeInsideDB : MyDBHelper
     lateinit var fridge : FridgeData
@@ -63,7 +63,7 @@ class ItemList : AppCompatActivity() {
     }
 }
 
-class SelectedFloorAdapter(val productList: List<Product>) : RecyclerView.Adapter<SelectedFloorAdapter.ViewHolder>(){
+class SelectedFloorAdapter(val productList: ArrayList<Product>) : RecyclerView.Adapter<SelectedFloorAdapter.ViewHolder>(){
 
     interface OnItemClickListener{
          fun OnItemClick(data: Product, pos:Int)
@@ -73,6 +73,7 @@ class SelectedFloorAdapter(val productList: List<Product>) : RecyclerView.Adapte
 
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+        val product = itemView.findViewById<LinearLayout>(R.id.productLayout)
         val itemName = itemView.findViewById<TextView>(R.id.itemName)
         val itemAmt = itemView.findViewById<TextView>(R.id.itemamt)
         val itemExpdate = itemView.findViewById<TextView>(R.id.itemexpdate)
@@ -86,6 +87,16 @@ class SelectedFloorAdapter(val productList: List<Product>) : RecyclerView.Adapte
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.product.setOnClickListener {
+            val dlg = popupDialog(holder.product.context)
+            dlg.setOnDeleteClickedListener {
+                if(it){
+                    productList.removeAt(position)
+                    this.notifyItemRemoved(position)
+                }
+            }
+            dlg.show(productList[position])
+        }
         holder.itemName.text = "상품명: " + productList[position].pname
         holder.itemAmt.text = "수량: " + productList[position].pquantity.toString() + "개"
         holder.itemExpdate.text = "남은 유통기한 : " + productList[position].expdate.toString() +"일"
