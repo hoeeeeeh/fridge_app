@@ -18,6 +18,8 @@ import com.example.myfridgeapp.databinding.ActivityItemListBinding
 import com.example.myfridgeapp.databinding.FridgeColumnBinding
 import com.example.myfridgeapp.databinding.ItemRowBinding
 import com.example.refrigerator_manage.CartData
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class ItemList : AppCompatActivity() {
     private lateinit var productList : ArrayList<Product>
@@ -117,7 +119,18 @@ class SelectedFloorAdapter(val productList: ArrayList<Product>) : RecyclerView.A
         }
         holder.itemName.text = "상품명: " + productList[position].pname
         holder.itemAmt.text = "수량: " + productList[position].pquantity.toString() + "개"
-        holder.itemExpdate.text = "남은 유통기한 : " + productList[position].expdate.toString() +"일"
+        val dateNow = LocalDate.now()
+        val formatter = DateTimeFormatter.ofPattern("yyyyMMdd")
+        val expDate: LocalDate = LocalDate.parse(productList[position].expdate.toString(), formatter)
+        var expDay = ""
+        if(expDate.compareTo(dateNow) > 0){
+            expDay = "남은 유통기한 : ${expDate.compareTo(dateNow)}일"
+        }else{
+            expDay = "유통기한이 지났습니다!"
+        }
+
+
+        holder.itemExpdate.text = expDay
     }
 
     override fun getItemCount(): Int {

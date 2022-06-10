@@ -2,7 +2,6 @@ package com.example.myfridgeapp
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -13,8 +12,13 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
-import androidx.core.graphics.createBitmap
+import androidx.appcompat.app.AppCompatActivity
 import com.example.myfridgeapp.databinding.ActivityProductInfoBinding
+import java.text.Format
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.temporal.TemporalQueries.localDate
+
 
 class ProductInfo : AppCompatActivity() {
     private lateinit var binding: ActivityProductInfoBinding
@@ -196,27 +200,34 @@ class ProductInfo : AppCompatActivity() {
             }
 
             okButton.setOnClickListener {
-                binding.productNameEditText.isFocusableInTouchMode = true
-                Log.d("isFocusable now : ", "${binding.productNameEditText.isFocusable}")
+                val regex = Regex( "(19|20)\\d{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])")
+                val dateNow = LocalDate.now()
+                val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd")
+                val dateNowStr = dateNow.format(formatter)
+                if(!regex.containsMatchIn(expEditText.text)){
+                    Toast.makeText(applicationContext,"년,월,일을 올바르게 작성해주세요. \n (예시 : ${dateNowStr})",Toast.LENGTH_SHORT).show()
+                }else{
+                    binding.productNameEditText.isFocusableInTouchMode = true
+                    Log.d("isFocusable now : ", "${binding.productNameEditText.isFocusable}")
 
-                pName = productNameEditText.text.toString()
-                pQuantity = quantityEditText.text.toString().toInt()
-                expDate = expEditText.text.toString().toInt()
-                val product = Product(0, fName, fFloor, pName, pQuantity, expDate)
-                if(myDBHelper.insertProduct(product)){
-                    binding.apply{
-                        productNameEditText.text.clear()
-                        quantityEditText.text.clear()
-                        expEditText.text.clear()
-                        okButton.isEnabled = false
+                    pName = productNameEditText.text.toString()
+                    pQuantity = quantityEditText.text.toString().toInt()
+                    expDate = expEditText.text.toString().toInt()
+                    val product = Product(0, fName, fFloor, pName, pQuantity, expDate)
+                    if(myDBHelper.insertProduct(product)){
+                        binding.apply{
+                            productNameEditText.text.clear()
+                            quantityEditText.text.clear()
+                            expEditText.text.clear()
+                            okButton.isEnabled = false
+                        }
+                        Toast.makeText(applicationContext,"제품을 냉장고에 넣었습니다.",Toast.LENGTH_SHORT).show()
+                        Log.i("DB", "insert success")
                     }
-                    Toast.makeText(applicationContext,"제품을 냉장고에 넣었습니다.",Toast.LENGTH_SHORT).show()
-                    Log.i("DB", "insert success")
+                    else{
+                        Log.i("DB", "insert failed")
+                    }
                 }
-                else{
-                    Log.i("DB", "insert failed")
-                }
-
             }
 
         }

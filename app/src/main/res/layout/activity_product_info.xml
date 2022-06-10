@@ -100,7 +100,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="0일"
+        android:hint="날짜 (예 : 20201122)"
         android:inputType="number|textPersonName"
         android:minHeight="48dp"
         android:padding="5dp" />
