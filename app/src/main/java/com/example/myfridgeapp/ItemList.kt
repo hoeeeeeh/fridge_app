@@ -114,8 +114,10 @@ class SelectedFloorAdapter(val productList: ArrayList<Product>) : RecyclerView.A
                 if(it){
                     productList.removeAt(position)
                     this.notifyItemRemoved(position)
+                    notifyItemRangeChanged(position, getItemCount() - position);
                 }
             }
+            Log.d("testtest", "${position}")
             dlg.show(productList[position])
         }
         holder.itemName.text = "상품명: " + productList[position].pname

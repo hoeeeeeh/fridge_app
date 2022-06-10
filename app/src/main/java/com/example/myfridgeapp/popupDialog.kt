@@ -41,7 +41,6 @@ class popupDialog(context : Context)  {
         deleteProductBtn.setOnClickListener {
             fridgeInsideDB = MyDBHelper(context_)
             fridgeInsideDB.deleteProduct(product)
-            deleteProduct(product)
             listener.onDeleteClicked(true)
             dlg.dismiss()
         }
