@@ -26,7 +26,8 @@ class ProductInfo : AppCompatActivity() {
             binding.productNameEditText.setText(tmpData)
 
             // 바코드로 상품 이름을 받으면 수정 불가능!
-            binding.productNameEditText.isFocusable = false
+            Log.d("isFocusable", "false")
+             binding.productNameEditText.isFocusableInTouchMode = false
         }
         else if(it.resultCode == Activity.RESULT_CANCELED){ // Barcode 인식 X
             Toast.makeText(this, "텍스트 입력으로 전환", Toast.LENGTH_SHORT).show()
@@ -195,6 +196,9 @@ class ProductInfo : AppCompatActivity() {
             }
 
             okButton.setOnClickListener {
+                binding.productNameEditText.isFocusableInTouchMode = true
+                Log.d("isFocusable now : ", "${binding.productNameEditText.isFocusable}")
+
                 pName = productNameEditText.text.toString()
                 pQuantity = quantityEditText.text.toString().toInt()
                 expDate = expEditText.text.toString().toInt()
@@ -204,6 +208,7 @@ class ProductInfo : AppCompatActivity() {
                         productNameEditText.text.clear()
                         quantityEditText.text.clear()
                         expEditText.text.clear()
+                        okButton.isEnabled = false
                     }
                     Toast.makeText(applicationContext,"제품을 냉장고에 넣었습니다.",Toast.LENGTH_SHORT).show()
                     Log.i("DB", "insert success")

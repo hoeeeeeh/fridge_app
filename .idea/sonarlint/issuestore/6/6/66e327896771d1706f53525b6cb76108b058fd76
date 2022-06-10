@@ -1,0 +1,18 @@
+
+Okotlin:S1481"+Remove this unused "result" local variable.(­÷ÍÀûÿÿÿÿ8ÉÁ·´”0
+Lkotlin:S1481d"-Remove this unused "new_menu" local variable.(øŞ¦‰8ÊÁ·´”0
+Lkotlin:S1481X"-Remove this unused "new_menu" local variable.(øŞ¦‰8ÊÁ·´”0
+9kotlin:S1128"Remove this unused import.(´Ùí8ÎÁ·´”0
+bkotlin:S101"LRename class "cart_view" to match the regular expression ^[A-Z][a-zA-Z0-9]*$(Ãíó[
+vkotlin:S117R"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(³“µ½şÿÿÿÿ8ØÁ·´”0
+vkotlin:S117S"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(óïğºÿÿÿÿÿ8ØÁ·´”0
+qkotlin:S117T"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(Ìûû¬8ÚÁ·´”0
+qkotlin:S117X"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(øŞ¦‰8ÚÁ·´”0
+vkotlin:S117_"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(³“µ½şÿÿÿÿ8ÛÁ·´”0
+vkotlin:S117`"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(óïğºÿÿÿÿÿ8ÛÁ·´”0
+qkotlin:S117a"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(Ìûû¬8ÛÁ·´”0
+qkotlin:S117d"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(øŞ¦‰8ÛÁ·´”0
+vkotlin:S117s"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(†¡ñ¡øÿÿÿÿ8ÛÁ·´”0
+qkotlin:S117t"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(€óâ8ÜÁ·´”0
+pkotlin:S117u"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(ğ®İS8ÜÁ·´”0
+vkotlin:S117}"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(óïğºÿÿÿÿÿ8ÜÁ·´”0
