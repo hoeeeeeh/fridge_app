@@ -4,6 +4,10 @@ plugins {
 }
 
 android {
+    lintOptions {
+        disable "Instantiatable"
+    }
+
     compileSdk 31
 
     defaultConfig {

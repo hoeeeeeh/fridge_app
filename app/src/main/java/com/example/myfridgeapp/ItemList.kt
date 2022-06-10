@@ -20,6 +20,7 @@ import com.example.myfridgeapp.databinding.ItemRowBinding
 import com.example.refrigerator_manage.CartData
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
 
 class ItemList : AppCompatActivity() {
     private lateinit var productList : ArrayList<Product>
@@ -123,8 +124,11 @@ class SelectedFloorAdapter(val productList: ArrayList<Product>) : RecyclerView.A
         val formatter = DateTimeFormatter.ofPattern("yyyyMMdd")
         val expDate: LocalDate = LocalDate.parse(productList[position].expdate.toString(), formatter)
         var expDay = ""
-        if(expDate.compareTo(dateNow) > 0){
-            expDay = "남은 유통기한 : ${expDate.compareTo(dateNow)}일"
+        val cmpDate = expDate.compareTo(dateNow)
+        if(cmpDate > 0){
+            expDay = "남은 유통기한 : ${ChronoUnit.DAYS.between(dateNow,expDate)}일"
+        }else if(cmpDate == 0){
+            expDay = "유통기한이 오늘까지 입니다!"
         }else{
             expDay = "유통기한이 지났습니다!"
         }
